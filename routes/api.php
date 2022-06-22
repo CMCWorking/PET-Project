@@ -26,6 +26,7 @@ Route::group(['as' => 'api.'], function () {
         // CUSTOMER INFORMATION
         Route::group(['prefix' => 'customer-informations', 'as' => 'customer-informations.', 'controller' => CustomerInformationGatewayController::class], function () {
             Route::get('/', 'getList')->name('getList');
+            Route::post('/', 'createCustomer')->name('createCustomer');
             Route::get('/{id}', 'getDetail')->name('getDetail');
             Route::post('/{id}', 'updateDetail')->name('updateDetail');
             Route::delete('/{id}', 'deleteCustomer')->name('deleteCustomer');

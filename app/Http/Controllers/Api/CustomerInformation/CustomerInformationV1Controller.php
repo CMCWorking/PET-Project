@@ -25,6 +25,22 @@ class CustomerInformationV1Controller extends Controller
         }
     }
 
+    public function createCustomer($version, Request $request)
+    {
+        try {
+            $customer = CustomerInformations::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'password' => Hash::make($request->password),
+            ]);
+
+            return response()->success($customer, 'Successfully created customer.', 201);
+        } catch (Exception $ex) {
+            return response()->error($ex->getMessage());
+        }
+    }
+
     /**
      * It gets the customer information and addresses of a customer with the given id
      *
