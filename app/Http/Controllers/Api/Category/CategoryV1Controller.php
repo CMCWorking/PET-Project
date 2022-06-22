@@ -38,10 +38,10 @@ class CategoryV1Controller extends Controller
      *
      * @return A category object.
      */
-    public function getDetail($version, $slug)
+    public function getDetail($version, $id)
     {
         try {
-            $category = Category::whereSlug($slug)->firstOrFail();
+            $category = Category::findOrFail($id);
 
             return response()->success($category);
         } catch (ModelNotFoundException $ex) {
