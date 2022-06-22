@@ -25,6 +25,24 @@ class PaymentMethodV1Controller extends Controller
     }
 
     /**
+     * It creates a new payment method
+     *
+     * @param Request request The request object
+     * @param version The version of the API you are using.
+     *
+     * @return A response object.
+     */
+    public function createPaymentMethod(Request $request, $version)
+    {
+        $payment_method = PaymentMethod::create([
+            'name' => $request->name,
+            'description' => $request->description,
+        ]);
+
+        return response()->success($payment_method, 'Payment method created successfully', 201);
+    }
+
+    /**
      * It returns a payment method with the given id
      *
      * @param version The version of the API you are using.

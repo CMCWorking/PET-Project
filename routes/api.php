@@ -24,27 +24,30 @@ Route::group(['as' => 'api.'], function () {
 
     Route::lapiv(function () {
         // CUSTOMER INFORMATION
-        Route::group(['prefix' => 'customer-information', 'as' => 'customer-information.', 'controller' => CustomerInformationGatewayController::class], function () {
+        Route::group(['prefix' => 'customer-informations', 'as' => 'customer-informations.', 'controller' => CustomerInformationGatewayController::class], function () {
             Route::get('/', 'getList')->name('getList');
-            Route::get('{id}', 'getDetail')->name('getDetail');
-            Route::post('/{id}/update', 'updateDetail')->name('updateDetail');
-            Route::delete('/{id}/delete', 'deleteCustomer')->name('deleteCustomer');
+            Route::post('/', 'createCustomer')->name('createCustomer');
+            Route::get('/{id}', 'getDetail')->name('getDetail');
+            Route::post('/{id}', 'updateDetail')->name('updateDetail');
+            Route::delete('/{id}', 'deleteCustomer')->name('deleteCustomer');
         });
 
         // CATEGORY
         Route::group(['prefix' => 'categories', 'as' => 'categories.', 'controller' => CategoryGatewayController::class], function () {
             Route::get('/', 'getList')->name('getList');
-            Route::get('/{slug}', 'getDetail')->name('getDetail');
-            Route::post('/{id}/update', 'updateDetail')->name('updateDetail');
-            Route::delete('/{id}/delete', 'deleteCategory')->name('deleteCategory');
+            Route::post('/', 'createCategory')->name('createCategory');
+            Route::get('/{id}', 'getDetail')->name('getDetail');
+            Route::post('/{id}', 'updateDetail')->name('updateDetail');
+            Route::delete('/{id}', 'deleteCategory')->name('deleteCategory');
         });
 
         // PAYMENT METHOD
         Route::group(['prefix' => 'payment-methods', 'as' => 'payment-methods.', 'controller' => PaymentMethodGatewayController::class], function () {
             Route::get('/', 'getList')->name('getList');
+            Route::post('/', 'createPaymentMethod')->name('createPaymentMethod');
             Route::get('/{id}', 'getDetail')->name('getDetail');
-            Route::post('/{id}/update', 'updateDetail')->name('updateDetail');
-            Route::delete('/{id}/delete', 'deletePaymentMethod')->name('deletePaymentMethod');
+            Route::post('/{id}', 'updateDetail')->name('updateDetail');
+            Route::delete('/{id}', 'deletePaymentMethod')->name('deletePaymentMethod');
         });
     });
 });

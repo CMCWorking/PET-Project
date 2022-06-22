@@ -7,6 +7,7 @@ use App\Models\Category;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryV1Controller extends Controller
 {
@@ -31,6 +32,33 @@ class CategoryV1Controller extends Controller
     }
 
     /**
+     * It creates a category.
+     *
+     * @param version The version of the API you want to access.
+     * @param Request request The request object.
+     */
+    public function createCategory($version, Request $request)
+    {
+        try {
+            $category = Category::create([
+                'name' => $request->name,
+                'description' => $request->description,
+                'slug' => Str::slug($request->name),
+                'image' => $request->image,
+                'status' => $request->status,
+                'keywords' => $request->keywords,
+                'parent_id' => $request->parent_id,
+            ]);
+
+            return response()->success($category, 'Successfully created category.', 201);
+        } catch (ModelNotFoundException $ex) {
+            return response()->error('Category not found.');
+        } catch (Exception $ex) {
+            return response()->error($ex->getMessage());
+        }
+    }
+
+    /**
      * It returns a category if it exists, otherwise it returns an error
      *
      * @param version The version of the API you are using.
@@ -38,10 +66,10 @@ class CategoryV1Controller extends Controller
      *
      * @return A category object.
      */
-    public function getDetail($version, $slug)
+    public function getDetail($version, $id)
     {
         try {
-            $category = Category::whereSlug($slug)->firstOrFail();
+            $category = Category::findOrFail($id);
 
             return response()->success($category);
         } catch (ModelNotFoundException $ex) {

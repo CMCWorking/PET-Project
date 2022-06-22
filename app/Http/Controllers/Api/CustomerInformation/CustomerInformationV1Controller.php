@@ -26,6 +26,28 @@ class CustomerInformationV1Controller extends Controller
     }
 
     /**
+     * It creates a new customer in the database
+     *
+     * @param version The version of the API you want to use.
+     * @param Request request The request object.
+     */
+    public function createCustomer($version, Request $request)
+    {
+        try {
+            $customer = CustomerInformations::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'password' => Hash::make($request->password),
+            ]);
+
+            return response()->success($customer, 'Successfully created customer.', 201);
+        } catch (Exception $ex) {
+            return response()->error($ex->getMessage());
+        }
+    }
+
+    /**
      * It gets the customer information and addresses of a customer with the given id
      *
      * @param id The id of the customer you want to retrieve.
