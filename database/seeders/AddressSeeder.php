@@ -8,7 +8,6 @@ use Buihuycuong\Vnfaker\VNFaker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Str;
 
 class AddressSeeder extends Seeder
 {
@@ -27,10 +26,10 @@ class AddressSeeder extends Seeder
         for ($i = 0; $i <= 10; $i++) {
             Address::create([
                 'customer_id' => $customers[array_rand($customers)]['id'],
-                'street' => VNFaker::address(),
-                'city_id' => Str::random(2),
-                'state_id' => Str::random(2),
-                'ward_id' => Str::random(2),
+                'address' => 'address',
+                'city_id' => rand(1, 99),
+                'district_id' => rand(1, 99),
+                'ward_id' => rand(1, 99),
                 'name' => VNFaker::fullname(),
                 'phone' => VNFaker::mobilephone(),
             ]);
