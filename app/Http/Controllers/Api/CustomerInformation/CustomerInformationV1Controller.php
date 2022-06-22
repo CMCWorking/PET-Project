@@ -80,9 +80,9 @@ class CustomerInformationV1Controller extends Controller
     {
         try {
             $customer = CustomerInformations::where('id', $id)->firstOrFail();
-            // $customer->delete();
+            $customer->delete();
 
-            return response()->success($customer, 'Successfully deleted customer.');
+            return response()->success([], 'Successfully deleted customer.');
 
         } catch (ModelNotFoundException $ex) {
             return response()->error('Customer not found.');

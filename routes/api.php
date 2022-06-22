@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\Category\CategoryGatewayController;
 use App\Http\Controllers\Api\CustomerInformation\CustomerInformationGatewayController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,18 +16,26 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::group(['as' => 'api.'], function () {
-    Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-        return $request->user();
+    // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    //     return $request->user();
 
-    })->name('user');
+    // })->name('user');
 
     Route::lapiv(function () {
-        /* Creating a group of routes with the prefix of customer-information. */
+        // CUSTOMER INFORMATION
         Route::group(['prefix' => 'customer-information', 'as' => 'customer-information.', 'controller' => CustomerInformationGatewayController::class], function () {
             Route::get('/', 'getList')->name('getList');
             Route::get('{id}', 'getDetail')->name('getDetail');
             Route::post('/{id}/update', 'updateDetail')->name('updateDetail');
             Route::delete('/{id}/delete', 'deleteCustomer')->name('deleteCustomer');
+        });
+
+        // CATEGORY
+        Route::group(['prefix' => 'categories', 'as' => 'categories.', 'controller' => CategoryGatewayController::class], function () {
+            Route::get('/', 'getList')->name('getList');
+            Route::get('/{slug}', 'getDetail')->name('getDetail');
+            Route::post('/{id}/update', 'updateDetail')->name('updateDetail');
+            Route::delete('/{id}/delete', 'deleteCategory')->name('deleteCategory');
         });
     });
 });
