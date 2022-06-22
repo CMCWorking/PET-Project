@@ -80,7 +80,7 @@ class PaymentMethodV1Controller extends Controller
     {
         try {
             $payment_method = PaymentMethod::findOrFail($id);
-            // $payment_method->delete();
+            $payment_method->delete();
 
             return response()->success([], 'Payment method deleted successfully');
         } catch (ModelNotFoundException $ex) {
