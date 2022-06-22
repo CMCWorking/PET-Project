@@ -44,6 +44,7 @@ Route::group(['as' => 'api.'], function () {
         // PAYMENT METHOD
         Route::group(['prefix' => 'payment-methods', 'as' => 'payment-methods.', 'controller' => PaymentMethodGatewayController::class], function () {
             Route::get('/', 'getList')->name('getList');
+            Route::post('/', 'createPaymentMethod')->name('createPaymentMethod');
             Route::get('/{id}', 'getDetail')->name('getDetail');
             Route::post('/{id}', 'updateDetail')->name('updateDetail');
             Route::delete('/{id}', 'deletePaymentMethod')->name('deletePaymentMethod');
