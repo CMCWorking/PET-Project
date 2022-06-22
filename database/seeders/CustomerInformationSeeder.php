@@ -22,14 +22,16 @@ class CustomerInformationSeeder extends Seeder
 
         $engine = ['facebook', 'google', 'email'];
 
-        CustomerInformations::create([
-            'name' => VNFaker::fullname(),
-            'email' => VNFaker::email(['gmail.test', 'cmcglobal.test']),
-            'phone' => VNFaker::mobilephone(),
-            'password' => Hash::make(Str::random(10)),
-            'received_promotion' => VNFaker::boolean(),
-            'login_engine' => $engine[array_rand($engine)],
-            'account_key' => VNFaker::generateOrderNo(10),
-        ]);
+        for ($i = 0; $i <= 20; $i++) {
+            CustomerInformations::create([
+                'name' => VNFaker::fullname(),
+                'email' => VNFaker::email(['gmail.test', 'cmcglobal.test']),
+                'phone' => VNFaker::mobilephone(),
+                'password' => Hash::make(Str::random(10)),
+                'receive_promotion' => VNFaker::boolean(),
+                'login_engine' => $engine[array_rand($engine)],
+                'account_key' => VNFaker::generateOrderNo(10),
+            ]);
+        }
     }
 }
