@@ -25,6 +25,12 @@ class CustomerInformationV1Controller extends Controller
         }
     }
 
+    /**
+     * It creates a new customer in the database
+     *
+     * @param version The version of the API you want to use.
+     * @param Request request The request object.
+     */
     public function createCustomer($version, Request $request)
     {
         try {

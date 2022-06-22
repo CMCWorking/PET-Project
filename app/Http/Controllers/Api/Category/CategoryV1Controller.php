@@ -31,6 +31,12 @@ class CategoryV1Controller extends Controller
         }
     }
 
+    /**
+     * It creates a category.
+     *
+     * @param version The version of the API you want to access.
+     * @param Request request The request object.
+     */
     public function createCategory($version, Request $request)
     {
         try {
