@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\CustomerInformation\CustomerInformationAPIController;
+use App\Http\Controllers\Api\CustomerInformation\CustomerInformationGatewayController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,10 +21,13 @@ Route::group(['as' => 'api.'], function () {
 
     })->name('user');
 
-    Route::group(['prefix' => 'customer-information', 'as' => 'customer-information.', 'controller' => CustomerInformationAPIController::class], function () {
-        Route::get('/', 'getList')->name('getList');
-        Route::get('{id}', 'getDetail')->name('getDetail');
-        Route::post('/{id}/update', 'updateDetail')->name('updateDetail');
-        Route::delete('/{id}/delete', 'deleteCustomer')->name('deleteCustomer');
+    Route::lapiv(function () {
+        /* Creating a group of routes with the prefix of customer-information. */
+        Route::group(['prefix' => 'customer-information', 'as' => 'customer-information.', 'controller' => CustomerInformationGatewayController::class], function () {
+            Route::get('/', 'getList')->name('getList');
+            Route::get('{id}', 'getDetail')->name('getDetail');
+            Route::post('/{id}/update', 'updateDetail')->name('updateDetail');
+            Route::delete('/{id}/delete', 'deleteCustomer')->name('deleteCustomer');
+        });
     });
 });
