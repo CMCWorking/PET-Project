@@ -10,6 +10,13 @@ use Illuminate\Http\Request;
 
 class CategoryV1Controller extends Controller
 {
+    /**
+     * > Get all categories
+     *
+     * @param version The version of the API you are using.
+     *
+     * @return A list of all categories.
+     */
     public function getList($version)
     {
         try {
@@ -23,6 +30,14 @@ class CategoryV1Controller extends Controller
         }
     }
 
+    /**
+     * It returns a category if it exists, otherwise it returns an error
+     *
+     * @param version The version of the API you are using.
+     * @param slug The slug of the category you want to retrieve.
+     *
+     * @return A category object.
+     */
     public function getDetail($version, $slug)
     {
         try {
@@ -36,6 +51,13 @@ class CategoryV1Controller extends Controller
         }
     }
 
+    /**
+     * It updates the category details.
+     *
+     * @param version The version of the API you are using.
+     * @param Request request The request object.
+     * @param id The id of the category to be updated.
+     */
     public function updateDetail($version, Request $request, $id)
     {
         try {
@@ -59,6 +81,14 @@ class CategoryV1Controller extends Controller
         }
     }
 
+    /**
+     * > Delete a category by id
+     *
+     * @param version The version of the API you're using.
+     * @param id The id of the category to delete.
+     *
+     * @return A response object.
+     */
     public function deleteCategory($version, $id)
     {
         try {
