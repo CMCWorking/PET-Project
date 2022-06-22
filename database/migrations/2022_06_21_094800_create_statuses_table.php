@@ -18,7 +18,6 @@ class CreateStatusesTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('classname');
-            $table->string('description');
             $table->enum('type', ['order_status', 'payment_status', 'shipping_status']);
             $table->timestamps();
         });
