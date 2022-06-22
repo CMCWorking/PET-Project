@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Category\CategoryGatewayController;
 use App\Http\Controllers\Api\CustomerInformation\CustomerInformationGatewayController;
+use App\Http\Controllers\Api\PaymentMethod\PaymentMethodGatewayController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,14 @@ Route::group(['as' => 'api.'], function () {
             Route::get('/{slug}', 'getDetail')->name('getDetail');
             Route::post('/{id}/update', 'updateDetail')->name('updateDetail');
             Route::delete('/{id}/delete', 'deleteCategory')->name('deleteCategory');
+        });
+
+        // PAYMENT METHOD
+        Route::group(['prefix' => 'payment-methods', 'as' => 'payment-methods.', 'controller' => PaymentMethodGatewayController::class], function () {
+            Route::get('/', 'getList')->name('getList');
+            Route::get('/{id}', 'getDetail')->name('getDetail');
+            Route::post('/{id}/update', 'updateDetail')->name('updateDetail');
+            Route::delete('/{id}/delete', 'deletePaymentMethod')->name('deletePaymentMethod');
         });
     });
 });
