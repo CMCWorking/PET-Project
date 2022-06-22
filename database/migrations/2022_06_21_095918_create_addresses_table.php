@@ -22,7 +22,7 @@ class CreateAddressesTable extends Migration
             $table->integer('ward_id');
             $table->string('name');
             $table->string('phone');
-            $table->foreign('customer_id')->references('id')->on('customer_informations')->onDelete('cascade');
+            // $table->foreign('customer_id')->references('id')->on('customer_informations')->onDelete('cascade');
             $table->timestamps();
         });
     }
