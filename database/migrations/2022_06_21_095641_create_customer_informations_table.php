@@ -19,9 +19,9 @@ class CreateCustomerInformationsTable extends Migration
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->string('password');
-            $table->integer('receive_promotion');
-            $table->string('login_engine');
-            $table->string('account_key');
+            $table->integer('receive_promotion')->default(0);
+            $table->string('login_engine')->nullable();
+            $table->string('account_key')->nullable();
             $table->timestamps();
         });
     }
