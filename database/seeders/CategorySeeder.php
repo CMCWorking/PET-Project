@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -16,9 +17,12 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
+        DB::table('categories')->truncate();
+
         $faker = Factory::create();
+
         for ($i = 1; $i <= 20; $i++) {
-            DB::table('categories')->insert([
+            Category::create([
                 'name' => 'Danh mục ' . $i,
                 'description' => 'Mô tả của danh mục ' . $i,
                 'slug' => Str::slug('Danh mục ' . $i),

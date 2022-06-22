@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Status;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -14,11 +15,13 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('statuses')->truncate();
+
         $className = ['danger', 'success', 'warning', 'info'];
         $type = ['order_status', 'payment_status', 'shipping_status'];
 
         for ($i = 1; $i <= 5; $i++) {
-            DB::table('statuses')->insert([
+            Status::create([
                 'name' => 'Trạng thái ' . $i,
                 'description' => 'Mô tả của trạng thái ' . $i,
                 'classname' => $className[array_rand($className)],

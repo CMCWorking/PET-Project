@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Address;
 use Buihuycuong\Vnfaker\VNFaker;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 class AddressSeeder extends Seeder
@@ -16,10 +18,11 @@ class AddressSeeder extends Seeder
      */
     public function run()
     {
-        $limit = 10;
+        Schema::disableForeignKeyConstraints();
+        DB::table('addresses')->truncate();
 
-        for ($i = 0; $i < $limit; $i++) {
-            DB::table('addresses')->insert([
+        for ($i = 0; $i <= 10; $i++) {
+            Address::create([
                 'customer_id' => 1,
                 'street' => VNFaker::address(),
                 'city_id' => Str::random(2),
@@ -29,5 +32,7 @@ class AddressSeeder extends Seeder
                 'phone' => VNFaker::mobilephone(),
             ]);
         }
+
+        Schema::enableForeignKeyConstraints();
     }
 }
