@@ -35,6 +35,7 @@ Route::group(['as' => 'api.'], function () {
         // CATEGORY
         Route::group(['prefix' => 'categories', 'as' => 'categories.', 'controller' => CategoryGatewayController::class], function () {
             Route::get('/', 'getList')->name('getList');
+            Route::post('/', 'createCategory')->name('createCategory');
             Route::get('/{id}', 'getDetail')->name('getDetail');
             Route::post('/{id}', 'updateDetail')->name('updateDetail');
             Route::delete('/{id}', 'deleteCategory')->name('deleteCategory');
