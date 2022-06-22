@@ -31,7 +31,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 # RUN docker-php-ext-install gd
 
 RUN chmod +x /usr/local/bin/install-php-extensions && \
-    install-php-extensions gd xdebug
+    install-php-extensions gd xdebug pdo_mysql
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
